@@ -1,0 +1,67 @@
+{
+  "cases": 24,
+  "created_at": "2026-08-14T09:19:54.814325+00:00",
+  "gold_labels": "outputs/evaluation/wlx-judge-gold-v5-eval-v2/wlx-judge-gold-labels-frozen.jsonl",
+  "gold_labels_sha256": "a3d2660a02cf4dabb24479d897e7eac51837192a65b58e0e0b4825bab0ede213",
+  "judge_results": "outputs/evaluation/eval-v2/wlx-judge-calibration-v4-pro-prompt-v2/wlx-judge-results.jsonl",
+  "judge_results_sha256": "4a60601dce9b380674353ac046539db40dbf3e19c4095faab7e7522ca637b68f",
+  "metrics": {
+    "available_gold_case_requirements": 182,
+    "dimension_exact": 0.8416666666666667,
+    "gold_requirement_coverage": 1.0,
+    "gold_requirement_labels": 182,
+    "gold_requirement_types": {
+      "attribute": 72,
+      "brand": 4,
+      "budget": 24,
+      "category": 20,
+      "function": 38,
+      "option": 8,
+      "other": 2,
+      "preference": 8,
+      "quantity": 6
+    },
+    "per_dimension": {
+      "candidate_utilization": {
+        "correct": 20,
+        "rate": 0.8333333333333334,
+        "total": 24
+      },
+      "decision_quality": {
+        "correct": 22,
+        "rate": 0.9166666666666666,
+        "total": 24
+      },
+      "evidence_verification": {
+        "correct": 15,
+        "rate": 0.625,
+        "total": 24
+      },
+      "search_strategy": {
+        "correct": 22,
+        "rate": 0.9166666666666666,
+        "total": 24
+      },
+      "termination_efficiency": {
+        "correct": 22,
+        "rate": 0.9166666666666666,
+        "total": 24
+      }
+    },
+    "primary_failure_exact": 0.6666666666666666,
+    "requirement_exact": 0.9560439560439561,
+    "responsibility_exact": 0.9166666666666666,
+    "uncovered_requirement_types": []
+  },
+  "model": "deepseek-v4-pro",
+  "prompt_sha256": "e09e6e63bdbd24f2efbf3bff997297297065f5082a65527b6d0173fe6a5de2c0",
+  "prompt_version": "wlx-eval-v2-judge-prompt-v2",
+  "schema_version": "wlx-eval-v2-judge-calibration-v1",
+  "status": "failed",
+  "thresholds": {
+    "dimension_exact": 0.75,
+    "primary_failure_exact": 0.7,
+    "requirement_exact": 0.8,
+    "responsibility_exact": 0.8
+  }
+}

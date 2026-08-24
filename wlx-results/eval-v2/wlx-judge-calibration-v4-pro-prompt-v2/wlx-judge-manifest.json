@@ -1,0 +1,43 @@
+{
+  "contract": {
+    "base_url": "https://api.deepseek.com",
+    "batch_version": "wlx-eval-v2-judge-batch-v1",
+    "calibration_manifest": null,
+    "calibration_manifest_sha256": null,
+    "case_ids": [
+      "base:10864",
+      "base:11773",
+      "base:7670",
+      "base:11976",
+      "base:19238",
+      "base:1405",
+      "base:4206",
+      "base:10633",
+      "base:13968",
+      "base:6781",
+      "base:4169",
+      "base:11159",
+      "sft:10864",
+      "sft:11773",
+      "sft:7670",
+      "sft:11976",
+      "sft:19238",
+      "sft:1405",
+      "sft:4206",
+      "sft:10633",
+      "sft:13968",
+      "sft:6781",
+      "sft:4169",
+      "sft:11159"
+    ],
+    "cases_sha256": "b65ed17fe9610624a68622634c4851bbaf7e48e8ad48d6d7b4ee84d99ce41d63",
+    "max_tokens": 8192,
+    "mode": "calibration",
+    "model": "deepseek-v4-pro",
+    "prompt_sha256": "e09e6e63bdbd24f2efbf3bff997297297065f5082a65527b6d0173fe6a5de2c0",
+    "prompt_version": "wlx-eval-v2-judge-prompt-v2"
+  },
+  "contract_sha256": "07c3ce15f76a4c7afa76fe3824783620a51ed41bc1cc4a401aeb4e4854801e58",
+  "created_at": "2026-08-14T09:16:55.908392+00:00",
+  "schema_version": "wlx-eval-v2-judge-manifest-v1"
+}

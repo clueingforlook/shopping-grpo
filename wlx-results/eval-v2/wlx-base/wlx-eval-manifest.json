@@ -1,0 +1,39 @@
+{
+  "counts": {
+    "evaluations": 200,
+    "review_queue": 8
+  },
+  "created_at": "2026-08-14T10:04:06.224165+00:00",
+  "evaluator_schema_version": "wlx-eval-v2",
+  "judge": {
+    "case_prefix": "base",
+    "count": 200,
+    "path": "outputs/evaluation/eval-v2/wlx-judge-production-v4-pro-prompt-v2/wlx-judge-results.jsonl",
+    "sha256": "2a7335f7b829a87ed3c230c248a1eb18762956aa1accbada6fd73a1b5effefda"
+  },
+  "limitations": {
+    "process_quality": null,
+    "requirements": null
+  },
+  "method_version": "wlx-eval-v2",
+  "outputs": {
+    "wlx-review-queue.jsonl": "af6d5796ded49cb80ceac144f51073179d32518951d2e99bc41b6bcfbb629556",
+    "wlx-run-summary.json": "b271d52e598558ba892fee654ce9c112cea6c473456c3ab2efab7ad02778c3ca",
+    "wlx-run-summary.md": "14d66e1b98f950229c2ce686e3efb17ba3281f8c4ebc3ac04379d8f7add0a2b8",
+    "wlx-trajectory-evaluations.jsonl": "b7faaa179d0c55699fd09d227dc990ac6461846bbe2feef92c6d0724ece32a9a"
+  },
+  "rubrics": {
+    "count": 200,
+    "path": "outputs/evaluation/wlx-eval200-rubrics-v1/wlx-rubrics.jsonl",
+    "rubric_set_version": "wlx-eval200-rubrics-v1",
+    "sha256": "f4f93d4f6a41481e21984c053d400acaffe2bbe2068b44f5b8629e29e7647409"
+  },
+  "run_name": "wlx-base-final200-v2",
+  "schema_version": "wlx-offline-evaluation-v1",
+  "source": {
+    "run_manifest": "outputs/evaluation/wlx-base-final200-v2/wlx-run-manifest.json",
+    "run_manifest_sha256": "95b0c00107d521eaf9be895c27b39fdbb9b0db3848da1f75b41bb85d57bc76a8",
+    "trajectories": "outputs/evaluation/wlx-base-final200-v2/wlx-trajectories.jsonl",
+    "trajectories_sha256": "c2af0c3e1330675cb0d8adc5df9706380f7a461691d40dca8ef69c1061e2814a"
+  }
+}

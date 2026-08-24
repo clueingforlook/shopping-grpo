@@ -1,0 +1,67 @@
+{
+  "cases": 24,
+  "created_at": "2026-08-14T08:53:52.120487+00:00",
+  "gold_labels": "outputs/evaluation/wlx-judge-gold-v4/wlx-judge-gold-labels-frozen.jsonl",
+  "gold_labels_sha256": "873d6a487748852de8d6d85cbefbf4df262845d4127d31f6bff116353673d60c",
+  "judge_results": "outputs/evaluation/eval-v2/wlx-judge-calibration-v4-pro/wlx-judge-results.jsonl",
+  "judge_results_sha256": "7781da7e71f9dd447477701e7581f635bacd2280e4c2b2896793f14024afba1d",
+  "metrics": {
+    "available_gold_case_requirements": 182,
+    "dimension_exact": 0.675,
+    "gold_requirement_coverage": 0.8076923076923077,
+    "gold_requirement_labels": 147,
+    "gold_requirement_types": {
+      "attribute": 52,
+      "brand": 2,
+      "budget": 23,
+      "category": 12,
+      "function": 38,
+      "option": 7,
+      "other": 2,
+      "preference": 8,
+      "quantity": 3
+    },
+    "per_dimension": {
+      "candidate_utilization": {
+        "correct": 14,
+        "rate": 0.5833333333333334,
+        "total": 24
+      },
+      "decision_quality": {
+        "correct": 14,
+        "rate": 0.5833333333333334,
+        "total": 24
+      },
+      "evidence_verification": {
+        "correct": 12,
+        "rate": 0.5,
+        "total": 24
+      },
+      "search_strategy": {
+        "correct": 20,
+        "rate": 0.8333333333333334,
+        "total": 24
+      },
+      "termination_efficiency": {
+        "correct": 21,
+        "rate": 0.875,
+        "total": 24
+      }
+    },
+    "primary_failure_exact": 0.7083333333333334,
+    "requirement_exact": 0.8979591836734694,
+    "responsibility_exact": 0.9166666666666666,
+    "uncovered_requirement_types": []
+  },
+  "model": "deepseek-v4-pro",
+  "prompt_sha256": "d7be8fb44e55bd6703f429bc8b3be10d1454ada83262f23213128b4e18f34f84",
+  "prompt_version": "wlx-eval-v2-judge-prompt-v1",
+  "schema_version": "wlx-eval-v2-judge-calibration-v1",
+  "status": "failed",
+  "thresholds": {
+    "dimension_exact": 0.75,
+    "primary_failure_exact": 0.7,
+    "requirement_exact": 0.8,
+    "responsibility_exact": 0.8
+  }
+}

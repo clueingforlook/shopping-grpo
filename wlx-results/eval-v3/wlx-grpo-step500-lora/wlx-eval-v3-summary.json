@@ -1,0 +1,218 @@
+{
+  "by_difficulty": {
+    "easy": {
+      "all_constraints": {
+        "count": 67,
+        "rate": 0.7790697674418605
+      },
+      "asin_match": {
+        "count": 72,
+        "rate": 0.8372093023255814
+      },
+      "attribute_ratio_mean": 0.8822443706164637,
+      "category_pass": {
+        "count": 85,
+        "rate": 0.9883720930232558
+      },
+      "gold": {
+        "count": 67,
+        "rate": 0.7790697674418605
+      },
+      "infrastructure_invalid": {
+        "count": 0,
+        "rate": 0.0
+      },
+      "no_purchase": {
+        "count": 1,
+        "rate": 0.011627906976744186
+      },
+      "option_ratio_mean": 0.7906976744186046,
+      "price_pass": {
+        "count": 85,
+        "rate": 0.9883720930232558
+      },
+      "purchase": {
+        "count": 85,
+        "rate": 0.9883720930232558
+      },
+      "reward_type_counts": {
+        "gold_purchase": 67,
+        "partial_alternative_purchase": 18,
+        "repeat_loop": 1
+      },
+      "tasks": 86,
+      "unverifiable": {
+        "count": 0,
+        "rate": 0.0
+      },
+      "valid_for_primary": {
+        "count": 86,
+        "rate": 1.0
+      }
+    },
+    "hard": {
+      "all_constraints": {
+        "count": 3,
+        "rate": 0.2727272727272727
+      },
+      "asin_match": {
+        "count": 5,
+        "rate": 0.45454545454545453
+      },
+      "attribute_ratio_mean": 0.4848484848484848,
+      "category_pass": {
+        "count": 7,
+        "rate": 0.6363636363636364
+      },
+      "gold": {
+        "count": 3,
+        "rate": 0.2727272727272727
+      },
+      "infrastructure_invalid": {
+        "count": 1,
+        "rate": 0.09090909090909091
+      },
+      "no_purchase": {
+        "count": 4,
+        "rate": 0.36363636363636365
+      },
+      "option_ratio_mean": 0.36363636363636365,
+      "price_pass": {
+        "count": 5,
+        "rate": 0.45454545454545453
+      },
+      "purchase": {
+        "count": 7,
+        "rate": 0.6363636363636364
+      },
+      "reward_type_counts": {
+        "gold_purchase": 3,
+        "missing": 2,
+        "partial_alternative_purchase": 2,
+        "repeat_loop": 2,
+        "reward_unverifiable": 1,
+        "wrong_purchase": 1
+      },
+      "tasks": 11,
+      "unverifiable": {
+        "count": 3,
+        "rate": 0.2727272727272727
+      },
+      "valid_for_primary": {
+        "count": 10,
+        "rate": 0.9090909090909091
+      }
+    },
+    "medium": {
+      "all_constraints": {
+        "count": 53,
+        "rate": 0.5145631067961165
+      },
+      "asin_match": {
+        "count": 72,
+        "rate": 0.6990291262135923
+      },
+      "attribute_ratio_mean": 0.8091269841269841,
+      "category_pass": {
+        "count": 96,
+        "rate": 0.9320388349514563
+      },
+      "gold": {
+        "count": 53,
+        "rate": 0.5145631067961165
+      },
+      "infrastructure_invalid": {
+        "count": 0,
+        "rate": 0.0
+      },
+      "no_purchase": {
+        "count": 7,
+        "rate": 0.06796116504854369
+      },
+      "option_ratio_mean": 0.5970873786407767,
+      "price_pass": {
+        "count": 88,
+        "rate": 0.8543689320388349
+      },
+      "purchase": {
+        "count": 96,
+        "rate": 0.9320388349514563
+      },
+      "reward_type_counts": {
+        "gold_purchase": 53,
+        "missing": 1,
+        "partial_alternative_purchase": 35,
+        "repeat_loop": 6,
+        "wrong_purchase": 8
+      },
+      "tasks": 103,
+      "unverifiable": {
+        "count": 3,
+        "rate": 0.02912621359223301
+      },
+      "valid_for_primary": {
+        "count": 103,
+        "rate": 1.0
+      }
+    }
+  },
+  "model": {
+    "name": "wlx-grpo-step500-lora",
+    "role": "grpo"
+  },
+  "overall": {
+    "all_constraints": {
+      "count": 123,
+      "rate": 0.615
+    },
+    "asin_match": {
+      "count": 149,
+      "rate": 0.745
+    },
+    "attribute_ratio_mean": 0.8227321428571429,
+    "category_pass": {
+      "count": 188,
+      "rate": 0.94
+    },
+    "gold": {
+      "count": 123,
+      "rate": 0.615
+    },
+    "infrastructure_invalid": {
+      "count": 1,
+      "rate": 0.005
+    },
+    "no_purchase": {
+      "count": 12,
+      "rate": 0.06
+    },
+    "option_ratio_mean": 0.6675,
+    "price_pass": {
+      "count": 178,
+      "rate": 0.89
+    },
+    "purchase": {
+      "count": 188,
+      "rate": 0.94
+    },
+    "reward_type_counts": {
+      "gold_purchase": 123,
+      "missing": 3,
+      "partial_alternative_purchase": 55,
+      "repeat_loop": 9,
+      "reward_unverifiable": 1,
+      "wrong_purchase": 9
+    },
+    "tasks": 200,
+    "unverifiable": {
+      "count": 6,
+      "rate": 0.03
+    },
+    "valid_for_primary": {
+      "count": 199,
+      "rate": 0.995
+    }
+  },
+  "schema_version": "wlx-eval-v3-summary-v1",
+  "task_count": 200
+}

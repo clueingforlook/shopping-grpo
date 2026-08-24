@@ -1,0 +1,15 @@
+{
+  "schema_version": "shopping-sft-dataset-v1",
+  "environment": "shopsimulator-environment-v2.1",
+  "reward": "shopsimulator-reward-v3",
+  "train": {
+    "path": "data/sft/train.jsonl",
+    "rows": 379,
+    "sha256": "8cd1f72130b3c781d5ffe08fe3e399b2a9e45d204e3f3bd0d8e677d1b51c8ec5"
+  },
+  "validation": {
+    "path": "data/sft/validation.jsonl",
+    "rows": 49,
+    "sha256": "f8ae506d0fa9d1526342a9f717da24922c8a55776d076a296698abac4fde05b3"
+  }
+}

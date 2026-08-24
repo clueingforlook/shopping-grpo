@@ -1,0 +1,17 @@
+{
+  "schema_version": "shopping-grpo-dataset-v1",
+  "environment": "shopsimulator-environment-v2.1",
+  "reward": "shopsimulator-reward-v3",
+  "train": {
+    "tasks": 1000,
+    "jsonl": "data/grpo/train.jsonl",
+    "parquet": "data/grpo/train.parquet",
+    "parquet_sha256": "e4b4765b67efcc064ba4e656db625a812a34cbcff00da0e23d6a3df8aac5fdd4"
+  },
+  "validation": {
+    "tasks": 50,
+    "jsonl": "data/grpo/validation.jsonl",
+    "parquet": "data/grpo/validation.parquet",
+    "parquet_sha256": "9aa370f00d7ead942e47cf9aed4ab0c55cd7426220f4603f4fed5dc949ea2788"
+  }
+}

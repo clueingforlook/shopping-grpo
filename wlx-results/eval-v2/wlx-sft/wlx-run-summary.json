@@ -1,0 +1,246 @@
+{
+  "deterministic_behavior": {
+    "distributions": {
+      "attempted_tool_calls": {
+        "count": 200,
+        "max": 32.0,
+        "mean": 8.295,
+        "median": 8.0,
+        "min": 4.0,
+        "p90": 10.0
+      },
+      "detail_view_count": {
+        "count": 200,
+        "max": 3.0,
+        "mean": 1.535,
+        "median": 2.0,
+        "min": 0.0,
+        "p90": 2.0
+      },
+      "exact_consecutive_repeat_count": {
+        "count": 200,
+        "max": 3.0,
+        "mean": 0.015,
+        "median": 0.0,
+        "min": 0.0,
+        "p90": 0.0
+      },
+      "executed_tool_calls": {
+        "count": 200,
+        "max": 32.0,
+        "mean": 8.245,
+        "median": 8.0,
+        "min": 2.0,
+        "p90": 10.0
+      },
+      "guard_rejection_count": {
+        "count": 200,
+        "max": 3.0,
+        "mean": 0.05,
+        "median": 0.0,
+        "min": 0.0,
+        "p90": 0.0
+      },
+      "input_token_sum": {
+        "count": 200,
+        "max": 401959.0,
+        "mean": 44531.395,
+        "median": 35329.0,
+        "min": 10606.0,
+        "p90": 62477.0
+      },
+      "max_turn_input_tokens": {
+        "count": 200,
+        "max": 22362.0,
+        "mean": 6714.59,
+        "median": 5705.0,
+        "min": 3013.0,
+        "p90": 9182.0
+      },
+      "option_selection_count": {
+        "count": 200,
+        "max": 17.0,
+        "mean": 1.385,
+        "median": 1.0,
+        "min": 0.0,
+        "p90": 2.0
+      },
+      "purchase_call_count": {
+        "count": 200,
+        "max": 1.0,
+        "mean": 0.925,
+        "median": 1.0,
+        "min": 0.0,
+        "p90": 1.0
+      },
+      "search_count": {
+        "count": 200,
+        "max": 9.0,
+        "mean": 1.345,
+        "median": 1.0,
+        "min": 1.0,
+        "p90": 2.0
+      },
+      "truncated_observation_count": {
+        "count": 200,
+        "max": 11.0,
+        "mean": 1.415,
+        "median": 1.0,
+        "min": 0.0,
+        "p90": 2.0
+      },
+      "unique_product_open_count": {
+        "count": 200,
+        "max": 8.0,
+        "mean": 1.105,
+        "median": 1.0,
+        "min": 0.0,
+        "p90": 1.0
+      },
+      "unique_search_query_count": {
+        "count": 200,
+        "max": 8.0,
+        "mean": 1.295,
+        "median": 1.0,
+        "min": 1.0,
+        "p90": 2.0
+      }
+    },
+    "tool_attempt_counts": {
+      "back_to_search": 71,
+      "buy_now": 185,
+      "open_product": 225,
+      "prev_page": 325,
+      "search_products": 269,
+      "select_option": 277,
+      "view_description": 140,
+      "view_features": 167
+    }
+  },
+  "eligibility": {
+    "counts": {
+      "eligible": 184,
+      "review_required": 16
+    },
+    "responsibility_counts": {
+      "model": 4,
+      "non_model": 5,
+      "undetermined": 191
+    }
+  },
+  "failure_attribution": {
+    "primary_failure_counts": {
+      "context_or_action_budget_exhausted": 3,
+      "insufficient_verification": 6,
+      "invalid_action": 1,
+      "none": 119,
+      "over_budget_purchase": 10,
+      "premature_purchase": 5,
+      "repeat_loop_no_progress": 11,
+      "wrong_option_selection": 44,
+      "wrong_product_selection": 1
+    },
+    "responsibility_counts": {
+      "model": 81,
+      "undetermined": 119
+    }
+  },
+  "format": {
+    "correct": {
+      "denominator": 200,
+      "numerator": 200,
+      "rate": 1.0
+    },
+    "first_error_counts": {}
+  },
+  "outcome": {
+    "environment_counts": {
+      "gold_purchase": 114,
+      "invalid_action_limit": 1,
+      "partial_alternative_purchase": 57,
+      "policy:ContextBudgetError": 3,
+      "repeat_loop": 11,
+      "reward_unverifiable": 5,
+      "wrong_purchase": 9
+    },
+    "normalized_counts": {
+      "gold_purchase": 117,
+      "no_purchase": 15,
+      "partial_purchase": 48,
+      "unverifiable": 11,
+      "valid_alternative_purchase": 1,
+      "wrong_purchase": 8
+    },
+    "purchase_correct": {
+      "denominator": 200,
+      "numerator": 118,
+      "rate": 0.59
+    },
+    "purchase_correct_eligible": {
+      "denominator": 184,
+      "numerator": 114,
+      "rate": 0.6195652173913043
+    },
+    "success_agreement_counts": {
+      "agree": 184,
+      "disagree": 4,
+      "not_comparable": 12
+    }
+  },
+  "process_quality": {
+    "dimension_score_counts": {
+      "candidate_utilization": {
+        "0": 19,
+        "1": 35,
+        "2": 146
+      },
+      "decision_quality": {
+        "0": 55,
+        "1": 31,
+        "2": 114
+      },
+      "evidence_verification": {
+        "0": 28,
+        "1": 63,
+        "2": 109
+      },
+      "search_strategy": {
+        "1": 38,
+        "2": 162
+      },
+      "termination_efficiency": {
+        "0": 53,
+        "1": 20,
+        "2": 127
+      }
+    },
+    "panel_status_counts": {
+      "complete": 200
+    }
+  },
+  "requirements": {
+    "check_counts": {
+      "satisfied": 1112,
+      "unknown": 270,
+      "violated": 46
+    },
+    "panel_status_counts": {
+      "complete": 200
+    }
+  },
+  "review": {
+    "required": {
+      "denominator": 200,
+      "numerator": 52,
+      "rate": 0.26
+    }
+  },
+  "run_name": "wlx-sft-final200-v2",
+  "schema_version": "wlx-eval-report-v1",
+  "tasks": {
+    "eligible": 184,
+    "non_model_invalid": 0,
+    "review_required": 16,
+    "selected": 200
+  }
+}

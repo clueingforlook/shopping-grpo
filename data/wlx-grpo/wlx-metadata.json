@@ -1,0 +1,32 @@
+{
+  "difficulty_version": "wlx-difficulty-4a9a03405bc2cec6",
+  "excluded_sft_and_evaluation_tasks": 628,
+  "schema_version": "wlx-grpo-data-v1",
+  "seed": 42,
+  "sources": {
+    "evaluation_tasks_sha256": "2c4ff070e13ddc30796d38e85170210e7d3c211992425a62090f2419fe8e0208",
+    "features_sha256": "8c4931791171ac9308bbc16f111a4d0b877aab501c36714aee08ddaf58455e20",
+    "model_sha256": "856d23f073c6ffdaf7637297d95a7bb16eb93532577afcd09e49f07650ab9446",
+    "public_tasks_sha256": "3450c72ccc6f93a929fc3c18a415cbdde0707a278ebadf5b982ed08ead2e1b7a"
+  },
+  "system_prompt_sha256": "2ffbbf2bb2690f38d49c6b04eb39681cc10adc277511e8457bec8ae051e0c39f",
+  "system_prompt_version": "wlx-sft-system-prompt-v1",
+  "train": {
+    "difficulty_counts": {
+      "easy": 200,
+      "hard": 200,
+      "medium": 600
+    },
+    "rows": 1000,
+    "sha256": "6817babc0b5c977c0b3e4d84e61507e717abfd10d016225b358b34dd7f174541"
+  },
+  "validation": {
+    "difficulty_counts": {
+      "easy": 10,
+      "hard": 10,
+      "medium": 30
+    },
+    "rows": 50,
+    "sha256": "ed12752fc8c1b74a7276ad1e18bd9b39c3f38de2c502b2cc6f1f36d2072f1ec0"
+  }
+}

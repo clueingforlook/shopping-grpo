@@ -1,0 +1,38 @@
+{
+  "created_at": "2026-08-16T16:51:09.077119+00:00",
+  "model": {
+    "name": "wlx-grpo-step500-lora",
+    "role": "grpo"
+  },
+  "outputs": {
+    "summary_json": "wlx-eval-v3-summary.json",
+    "summary_markdown": "wlx-eval-v3-summary.md",
+    "task_results": "wlx-eval-v3-task-results.jsonl"
+  },
+  "protocol": {
+    "fixed_denominator": 200,
+    "gold_source": "ShopSimulator reward_detail.gold_purchase",
+    "llm_judge": false,
+    "reward_version": "shopsimulator-reward-v3",
+    "rubric": false
+  },
+  "schema_version": "wlx-eval-v3-manifest-v1",
+  "sources": {
+    "difficulty": {
+      "path": "/root/autodl-tmp/my-work/shopping-grpo-longhorizon/outputs/wlx-evaluation-difficulty-v1/wlx-evaluation-difficulty.jsonl",
+      "sha256": "ab38bf1df006fa9847302704f204a86f9a601adb08baf4d8b2eee2c748765466"
+    },
+    "run_manifest": {
+      "path": "outputs/evaluation/eval-v3/wlx-grpo-step500-lora/wlx-run-manifest.json",
+      "sha256": "4c3a6326697edf4a665f0e15343b446c1ff543ac7527fd0b9e1392f10051ac03"
+    },
+    "tasks": {
+      "path": "/root/autodl-tmp/my-work/shopping-grpo-longhorizon/data/evaluation/tasks.jsonl",
+      "sha256": "2c4ff070e13ddc30796d38e85170210e7d3c211992425a62090f2419fe8e0208"
+    },
+    "trajectories": {
+      "path": "outputs/evaluation/eval-v3/wlx-grpo-step500-lora/wlx-trajectories.jsonl",
+      "sha256": "8d42cc07f17f82b8f552b4b00ad125b2a8a08cf3b4ef085aa1d2759419279860"
+    }
+  }
+}

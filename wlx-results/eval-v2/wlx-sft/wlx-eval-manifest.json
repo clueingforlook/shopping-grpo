@@ -1,0 +1,39 @@
+{
+  "counts": {
+    "evaluations": 200,
+    "review_queue": 52
+  },
+  "created_at": "2026-08-14T10:04:20.429593+00:00",
+  "evaluator_schema_version": "wlx-eval-v2",
+  "judge": {
+    "case_prefix": "sft",
+    "count": 200,
+    "path": "outputs/evaluation/eval-v2/wlx-judge-production-v4-pro-prompt-v2/wlx-judge-results.jsonl",
+    "sha256": "2a7335f7b829a87ed3c230c248a1eb18762956aa1accbada6fd73a1b5effefda"
+  },
+  "limitations": {
+    "process_quality": null,
+    "requirements": null
+  },
+  "method_version": "wlx-eval-v2",
+  "outputs": {
+    "wlx-review-queue.jsonl": "aa87ce01141cdd9a9acbe6ab861e152df64a650bc563b02b3aa27063626887e9",
+    "wlx-run-summary.json": "d82d614cb4727575673632682232972e693bc2206b05dbce127629e94ad2fadc",
+    "wlx-run-summary.md": "ea8a792b2e94fe56b5c812c50ebfbfcb476fda6150208892429f60f293b43584",
+    "wlx-trajectory-evaluations.jsonl": "23a49d51f334a00debef55e3a701bb4badb1605a7b7e30cccddd0ad7b6d61409"
+  },
+  "rubrics": {
+    "count": 200,
+    "path": "outputs/evaluation/wlx-eval200-rubrics-v1/wlx-rubrics.jsonl",
+    "rubric_set_version": "wlx-eval200-rubrics-v1",
+    "sha256": "f4f93d4f6a41481e21984c053d400acaffe2bbe2068b44f5b8629e29e7647409"
+  },
+  "run_name": "wlx-sft-final200-v2",
+  "schema_version": "wlx-offline-evaluation-v1",
+  "source": {
+    "run_manifest": "outputs/evaluation/wlx-sft-final200-v2/wlx-run-manifest.json",
+    "run_manifest_sha256": "75dfc888687cfa3e4685c11e2223e17e53e3901d7405e46404460f33dd83d81a",
+    "trajectories": "outputs/evaluation/wlx-sft-final200-v2/wlx-trajectories.jsonl",
+    "trajectories_sha256": "be9b17dfc87a415f4123456eb49cc0db837390ce87f9e2d10ebdbb13fa8c078d"
+  }
+}

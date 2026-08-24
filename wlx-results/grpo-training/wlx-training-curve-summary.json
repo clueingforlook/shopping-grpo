@@ -1,0 +1,26 @@
+{
+  "last_training": {
+    "effective_group_ratio": 0.3333333333333333,
+    "gold": 0.375,
+    "grad_norm": 0.4050125181674957,
+    "kl": 0.007047365535981953,
+    "learning_rate": 1e-06,
+    "memory_gib": 53.01111125946045,
+    "optimizer_updated": 1.0,
+    "orm": 0.25,
+    "response_length": 6046.75,
+    "step": 500.0,
+    "step_seconds": 96.50165882892907
+  },
+  "last_validation": {
+    "gold": 0.52,
+    "orm": 0.5125,
+    "reward": 0.512525999735226,
+    "step": 500.0,
+    "turns": 18.96
+  },
+  "rolling_window": 10,
+  "source_log": "outputs/models/wlx-rl-v4-main-24k-noentropy/wlx-train.log",
+  "training_steps": 500,
+  "validation_points": 11
+}
