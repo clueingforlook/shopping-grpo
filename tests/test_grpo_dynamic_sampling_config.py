@@ -12,7 +12,7 @@ from scripts.check_grpo_runtime import (
     compose_runtime_config,
     validate_dynamic_sampling,
     validate_training_memory_budget,
-    validate_wlx_agent_memory_budget,
+    validate_agent_memory_budget,
 )
 
 
@@ -56,18 +56,18 @@ class DynamicSamplingConfigTest(unittest.TestCase):
         ):
             validate_training_memory_budget(dynamic_rollout_log_prob)
 
-    def test_wlx_training_uses_24k_with_entropy_disabled(self):
+    def test_training_uses_24k_with_entropy_disabled(self):
         root = Path(__file__).resolve().parents[1]
         environment = {
-            "GRPO_CONFIG_NAME": "wlx_grpo",
-            "WLX_SHOPPING_AGENT_LOOP_CONFIG": str(
-                root / "configs/wlx_agent_loop.yaml"
+            "GRPO_CONFIG_NAME": "grpo",
+            "SHOPPING_AGENT_LOOP_CONFIG": str(
+                root / "configs/step_agent_loop.yaml"
             ),
         }
         with patch.dict("os.environ", environment, clear=False):
             config = compose_runtime_config([])
             validate_training_memory_budget(config)
-            validate_wlx_agent_memory_budget(config)
+            validate_agent_memory_budget(config)
             self.assertEqual(config.data.max_response_length, 20480)
             self.assertEqual(config.actor_rollout_ref.rollout.max_model_len, 24576)
             self.assertFalse(config.actor_rollout_ref.actor.calculate_entropy)

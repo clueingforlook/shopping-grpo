@@ -188,7 +188,7 @@ def _append_step(state, tool, parameters, done=False, reward=0.0, progress=None)
 
 
 def _public_progress(value):
-    """Keep only deterministic liveness fields needed by WLX PRM."""
+    """Keep only deterministic liveness fields needed by PRM."""
     if not isinstance(value, dict):
         return {}
     return {

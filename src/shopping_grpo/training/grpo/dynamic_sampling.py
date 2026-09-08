@@ -34,7 +34,7 @@ def aggregate_shopping_metrics(shopping_infos: Sequence[object]) -> dict[str, fl
             raise ValueError(f"shopping extra field at index {index} is missing reward diagnostics")
         reward = info["reward"]
         if reward.get("version") != "wlx-reward-v4":
-            raise ValueError(f"shopping reward at index {index} is not WLX Reward v4")
+            raise ValueError(f"shopping reward at index {index} is not Reward v4")
         try:
             utility = float(reward["terminal_utility"])
         except (KeyError, TypeError, ValueError) as exc:

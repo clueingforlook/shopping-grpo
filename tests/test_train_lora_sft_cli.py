@@ -12,9 +12,9 @@ from unittest.mock import patch
 from scripts.train_lora_sft import (
     DEFAULT_TARGET_MODULES,
     GIB,
-    WLX_METRICS_FILENAME,
-    WLX_RUN_SUMMARY_FILENAME,
-    WLX_SWANLAB_DIRNAME,
+    METRICS_FILENAME,
+    RUN_SUMMARY_FILENAME,
+    SWANLAB_DIRNAME,
     _adapter_fingerprint,
     _evaluation_summary,
     _load_preprocessing_components,
@@ -442,12 +442,12 @@ class TrainLoraSftCliTest(unittest.TestCase):
         self.assertEqual(metrics["gpu_peak_memory_reserved_gib"], 4.0)
         self.assertEqual(FakeCuda.synchronize_calls, 2)
 
-    def test_metrics_jsonl_is_wlx_prefixed_and_written_on_each_log(self):
-        self.assertEqual(WLX_METRICS_FILENAME, "wlx-metrics.jsonl")
-        self.assertEqual(WLX_RUN_SUMMARY_FILENAME, "wlx-run-summary.json")
-        self.assertEqual(WLX_SWANLAB_DIRNAME, "wlx-swanlab")
+    def test_metrics_jsonl_is_step_grpo_prefixed_and_written_on_each_log(self):
+        self.assertEqual(METRICS_FILENAME, "metrics.jsonl")
+        self.assertEqual(RUN_SUMMARY_FILENAME, "run-summary.json")
+        self.assertEqual(SWANLAB_DIRNAME, "swanlab")
         with tempfile.TemporaryDirectory() as tmpdir:
-            path = Path(tmpdir) / WLX_METRICS_FILENAME
+            path = Path(tmpdir) / METRICS_FILENAME
             callback_class = _metrics_jsonl_callback_class(_FakeCallback, path)
             callback = callback_class()
             state = type(
@@ -487,13 +487,13 @@ class TrainLoraSftCliTest(unittest.TestCase):
         self.assertIsNone(empty["best_eval_loss"])
         self.assertIsNone(empty["best_checkpoint"])
 
-    def test_adapter_fingerprint_is_streamed_and_excludes_wlx_records(self):
+    def test_adapter_fingerprint_is_streamed_and_excludes_records(self):
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)
             adapter = root / "adapter_model.safetensors"
             adapter.write_bytes(b"adapter")
             (root / "adapter_config.json").write_text("{}", encoding="utf-8")
-            (root / "wlx-metrics.jsonl").write_text("record", encoding="utf-8")
+            (root / "metrics.jsonl").write_text("record", encoding="utf-8")
             (root / "checkpoint-1").mkdir()
 
             fingerprint = _adapter_fingerprint(root)
@@ -502,7 +502,7 @@ class TrainLoraSftCliTest(unittest.TestCase):
         self.assertEqual(adapter_digest, hashlib.sha256(b"adapter").hexdigest())
         self.assertIn("adapter_model.safetensors", fingerprint["files"])
         self.assertIn("adapter_config.json", fingerprint["files"])
-        self.assertNotIn("wlx-metrics.jsonl", fingerprint["files"])
+        self.assertNotIn("metrics.jsonl", fingerprint["files"])
 
 
 if __name__ == "__main__":  # pragma: no cover

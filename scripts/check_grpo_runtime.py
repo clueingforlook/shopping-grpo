@@ -25,9 +25,9 @@ EXPECTED_TRANSFORMERS_REVISION = "7ea2320c76117e6742364808a666ef6f2fb40a67"
 PATCH_MARKER = "SHOPPING_GRPO_DYNAMIC_SAMPLING_PATCH_V4"
 MAX_SAFE_RESPONSE_LENGTH = 20480
 MAX_SAFE_SEQUENCE_LENGTH = 24576
-WLX_SAFE_RESPONSE_LENGTH = 20480
-WLX_SAFE_SEQUENCE_LENGTH = 24576
-WLX_AGENT_INPUT_BUDGET = 16384
+SAFE_RESPONSE_LENGTH = 20480
+SAFE_SEQUENCE_LENGTH = 24576
+AGENT_INPUT_BUDGET = 16384
 CURRENT_RUNTIME_FILES = {
     "observation.py": "environments/ShopSimulator/shop_env/web_agent_site/engine/observation.py",
     "pack_api.py": "environments/ShopSimulator/shop_env/shop_env/pack_api.py",
@@ -249,33 +249,33 @@ def validate_dynamic_sampling(config, verl_source: Path, installed):
     )
 
 
-def validate_wlx_step_grpo(config):
+def validate_step_grpo(config):
     """Reject configurations that silently fall back to trajectory GRPO."""
-    if str(config.algorithm.adv_estimator) != "wlx_step_grpo":
-        raise SystemExit("WLX Reward v4 requires algorithm.adv_estimator=wlx_step_grpo")
+    if str(config.algorithm.adv_estimator) != "step_grpo":
+        raise SystemExit("Reward v4 requires algorithm.adv_estimator=step_grpo")
     if bool(config.critic.get("enable", False)):
-        raise SystemExit("WLX Step-GRPO must not enable a critic/value model")
+        raise SystemExit("Step-GRPO must not enable a critic/value model")
     if bool(config.reward_model.get("enable", False)):
-        raise SystemExit("WLX Reward v4 must not enable a learned reward model")
+        raise SystemExit("Reward v4 must not enable a learned reward model")
     if bool(config.algorithm.get("use_kl_in_reward", False)):
-        raise SystemExit("WLX Step-GRPO keeps KL reward disabled")
+        raise SystemExit("Step-GRPO keeps KL reward disabled")
     actor = config.actor_rollout_ref.actor
     if bool(actor.get("use_kl_loss", False)) or float(actor.get("kl_loss_coef", 0.0)) != 0.0:
-        raise SystemExit("WLX Step-GRPO keeps actor KL loss disabled")
+        raise SystemExit("Step-GRPO keeps actor KL loss disabled")
     if bool(actor.get("calculate_entropy", False)):
         raise SystemExit(
-            "WLX Step-GRPO requires calculate_entropy=false to avoid the "
+            "Step-GRPO requires calculate_entropy=false to avoid the "
             "Qwen3.5 full-vocabulary backward memory peak"
         )
-    if bool(config.get("wlx_step_lata", {}).get("enable", False)):
-        raise SystemExit("WLX main recipe has not enabled Step-LATA")
+    if bool(config.get("step_lata", {}).get("enable", False)):
+        raise SystemExit("main recipe has not enabled Step-LATA")
     from shopping_grpo.training.grpo.compat import install_torch_padding_fallback
     from verl.trainer.ppo import ray_trainer
 
     install_torch_padding_fallback()
-    if not getattr(ray_trainer.compute_advantage, "_wlx_step_grpo", False):
-        raise SystemExit("WLX Step-GRPO runtime hook was not installed")
-    print("WLX Reward v4 / step advantage preflight passed")
+    if not getattr(ray_trainer.compute_advantage, "_step_grpo", False):
+        raise SystemExit("Step-GRPO runtime hook was not installed")
+    print("Reward v4 / step advantage preflight passed")
 
 
 def validate_swanlab_tracking(config):
@@ -286,21 +286,21 @@ def validate_swanlab_tracking(config):
     forbidden = {"wandb", "tracking", "vemlp_wandb"} & set(logger_backends)
     if forbidden:
         raise SystemExit(
-            "WLX GRPO forbids W&B logger backends: "
+            "GRPO forbids W&B logger backends: "
             + ", ".join(sorted(forbidden))
         )
     if os.environ.get("SWANLAB_MODE") != "online":
-        raise SystemExit("WLX GRPO requires SWANLAB_MODE=online")
+        raise SystemExit("GRPO requires SWANLAB_MODE=online")
     if not os.environ.get("SWANLAB_API_KEY"):
         raise SystemExit(
-            "WLX GRPO requires SWANLAB_API_KEY in the launching environment"
+            "GRPO requires SWANLAB_API_KEY in the launching environment"
         )
     log_dir = os.environ.get("SWANLAB_LOG_DIR")
     if not log_dir:
-        raise SystemExit("WLX GRPO requires SWANLAB_LOG_DIR")
+        raise SystemExit("GRPO requires SWANLAB_LOG_DIR")
     resolved_log_dir = Path(log_dir).resolve()
-    if str(config.trainer.get("project_name")) not in {"shopping-grpo", "wlx-shopping-grpo"}:
-        raise SystemExit("WLX GRPO SwanLab project name is invalid")
+    if str(config.trainer.get("project_name")) not in {"shopping-grpo", "shopping-grpo"}:
+        raise SystemExit("GRPO SwanLab project name is invalid")
     print(
         "SwanLab online preflight passed: "
         + json.dumps(
@@ -324,12 +324,12 @@ def validate_training_memory_budget(config):
     actor = config.actor_rollout_ref.actor
     rollout = config.actor_rollout_ref.rollout
     reference = config.actor_rollout_ref.ref
-    is_wlx = str(config.algorithm.adv_estimator) == "wlx_step_grpo"
+    is_step_grpo = str(config.algorithm.adv_estimator) == "step_grpo"
     response_limit = (
-        WLX_SAFE_RESPONSE_LENGTH if is_wlx else MAX_SAFE_RESPONSE_LENGTH
+        SAFE_RESPONSE_LENGTH if is_step_grpo else MAX_SAFE_RESPONSE_LENGTH
     )
     sequence_limit = (
-        WLX_SAFE_SEQUENCE_LENGTH if is_wlx else MAX_SAFE_SEQUENCE_LENGTH
+        SAFE_SEQUENCE_LENGTH if is_step_grpo else MAX_SAFE_SEQUENCE_LENGTH
     )
 
     if response_length > response_limit:
@@ -398,32 +398,32 @@ def validate_training_memory_budget(config):
     )
 
 
-def validate_wlx_agent_memory_budget(config):
+def validate_agent_memory_budget(config):
     """Keep AgentLoop truncation limits consistent with the 24K actor budget."""
-    if str(config.algorithm.adv_estimator) != "wlx_step_grpo":
+    if str(config.algorithm.adv_estimator) != "step_grpo":
         return
-    agent_path = os.environ.get("WLX_SHOPPING_AGENT_LOOP_CONFIG")
+    agent_path = os.environ.get("SHOPPING_AGENT_LOOP_CONFIG")
     if not agent_path or not Path(agent_path).is_file():
-        raise SystemExit("WLX_SHOPPING_AGENT_LOOP_CONFIG is missing")
+        raise SystemExit("SHOPPING_AGENT_LOOP_CONFIG is missing")
     try:
         from omegaconf import OmegaConf
 
         loops = OmegaConf.load(agent_path)
         agent = next(
-            item for item in loops if str(item.get("name")) == "wlx_shopping_tool_agent"
+            item for item in loops if str(item.get("name")) == "shopping_tool_agent"
         )
     except (OSError, StopIteration, TypeError, ValueError) as exc:
-        raise SystemExit(f"invalid WLX AgentLoop config: {exc}") from exc
+        raise SystemExit(f"invalid AgentLoop config: {exc}") from exc
 
     expected = {
-        "context_window_tokens": WLX_SAFE_SEQUENCE_LENGTH,
-        "context_input_budget_tokens": WLX_AGENT_INPUT_BUDGET,
+        "context_window_tokens": SAFE_SEQUENCE_LENGTH,
+        "context_input_budget_tokens": AGENT_INPUT_BUDGET,
     }
     for name, value in expected.items():
         actual = int(agent.get(name, -1))
         if actual != value:
             raise SystemExit(
-                f"unsafe or inconsistent WLX AgentLoop budget: {name} must equal "
+                f"unsafe or inconsistent AgentLoop budget: {name} must equal "
                 f"{value}, got {actual}"
             )
     usable_input = (
@@ -433,10 +433,10 @@ def validate_wlx_agent_memory_budget(config):
     )
     if int(agent.context_input_budget_tokens) > usable_input:
         raise SystemExit(
-            "WLX AgentLoop input budget exceeds its context window after reserves"
+            "AgentLoop input budget exceeds its context window after reserves"
         )
     print(
-        "WLX AgentLoop memory budget preflight passed: "
+        "AgentLoop memory budget preflight passed: "
         + json.dumps(
             {
                 "context_window_tokens": int(agent.context_window_tokens),
@@ -459,7 +459,7 @@ def main():
     if missing:
         raise SystemExit("missing GRPO parquet file(s): " + ", ".join(missing))
     validate_training_memory_budget(config)
-    validate_wlx_agent_memory_budget(config)
+    validate_agent_memory_budget(config)
 
     if sys.version_info[:2] != (3, 12):
         raise SystemExit(f"incompatible Python: expected 3.12, got {sys.version.split()[0]}")
@@ -494,8 +494,8 @@ def main():
 
     verl_source = Path(verl.__file__).resolve()
     if not torch.cuda.is_available():
-        if os.environ.get("WLX_ALLOW_CPU_PREFLIGHT") == "1":
-            print("CUDA check skipped by WLX_ALLOW_CPU_PREFLIGHT=1")
+        if os.environ.get("ALLOW_CPU_PREFLIGHT") == "1":
+            print("CUDA check skipped by ALLOW_CPU_PREFLIGHT=1")
         else:
             raise SystemExit("CUDA is unavailable in the GRPO environment")
     if (
@@ -510,7 +510,7 @@ def main():
     if "swanlab" not in Tracking.supported_backend:
         raise SystemExit("veRL 0.8 SwanLab tracking backend is unavailable")
     validate_dynamic_sampling(config, verl_source, installed)
-    validate_wlx_step_grpo(config)
+    validate_step_grpo(config)
     validate_swanlab_tracking(config)
     install_torch_padding_fallback()
     print(

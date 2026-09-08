@@ -21,9 +21,9 @@ from shopping_grpo.training.grpo.adapter.runtime import (
     task_id_from_kwargs,
 )
 from shopping_grpo.training.grpo.adapter.session import ShopSimulatorSession
-from shopping_grpo.training.grpo.wlx_reward_v4 import (
-    compute_wlx_orm,
-    compute_wlx_prm,
+from shopping_grpo.training.grpo.reward_v4 import (
+    compute_orm,
+    compute_prm,
     reward_score_for_sampling,
 )
 
@@ -279,8 +279,8 @@ class ShoppingToolAgentLoop(ToolAgentLoop):
                 state["termination_reason"] = state["error"]
                 state["terminate"] = True
             # 父类结束后统一从环境状态结算，避免把中途异常当作正常终局奖励。
-            breakdown = compute_wlx_orm(state)
-            prm = compute_wlx_prm(state)
+            breakdown = compute_orm(state)
+            prm = compute_prm(state)
             response_length = len(output.response_mask)
             step_spans = []
             for model_step in state["model_steps"]:

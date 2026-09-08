@@ -126,7 +126,7 @@ class VerlPatchScriptTest(unittest.TestCase):
             )
             self.assertIn("extract_shopping_group_signals", fit_source)
             self.assertIn("aggregate_shopping_metrics", fit_source)
-            self.assertIn('"wlx_step_grpo"', fit_source)
+            self.assertIn('"step_grpo"', fit_source)
             self.assertIn('(\"wlx_gold\", \"gold\")', patched_source)
             self.assertIn('(\"wlx_orm\", \"terminal_utility\")', patched_source)
             self.assertIn("terminal_utilities=terminal_utilities", fit_source)

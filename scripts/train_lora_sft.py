@@ -32,9 +32,9 @@ DEFAULT_TARGET_MODULES = (
 )
 
 GIB = 1024**3
-WLX_METRICS_FILENAME = "wlx-metrics.jsonl"
-WLX_RUN_SUMMARY_FILENAME = "wlx-run-summary.json"
-WLX_SWANLAB_DIRNAME = "wlx-swanlab"
+METRICS_FILENAME = "metrics.jsonl"
+RUN_SUMMARY_FILENAME = "run-summary.json"
+SWANLAB_DIRNAME = "swanlab"
 
 
 def parse_args():
@@ -460,7 +460,9 @@ def _adapter_fingerprint(output_dir):
     files = sorted(
         candidate
         for candidate in root.iterdir()
-        if candidate.is_file() and not candidate.name.startswith("wlx-")
+        if candidate.is_file()
+        and candidate.name not in {METRICS_FILENAME, RUN_SUMMARY_FILENAME}
+        and not candidate.name.startswith("wlx-")  # Historical run records.
     )
     manifest_digest = hashlib.sha256()
     file_records = {}
@@ -767,11 +769,11 @@ def main():
             project=args.swanlab_project,
             name=run_name,
             mode=args.swanlab_mode,
-            logdir=str(args.output / WLX_SWANLAB_DIRNAME),
+            logdir=str(args.output / SWANLAB_DIRNAME),
         )
         print(
             f"[SwanLab] project={args.swanlab_project} run={run_name} "
-            f"logdir={args.output / WLX_SWANLAB_DIRNAME}"
+            f"logdir={args.output / SWANLAB_DIRNAME}"
         )
     training_arg_values = dict(
         output_dir=str(args.output),
@@ -807,7 +809,7 @@ def main():
     progress_callback = ProgressCallback()
     MetricsJsonlCallback = _metrics_jsonl_callback_class(
         TrainerCallback,
-        args.output / WLX_METRICS_FILENAME,
+        args.output / METRICS_FILENAME,
     )
     trainer_class = _loss_only_eval_trainer_class(
         Trainer,
@@ -884,9 +886,9 @@ def main():
             "run_name": run_name,
             "mode": args.swanlab_mode if args.swanlab else None,
             "log_directory": (
-                str(args.output / WLX_SWANLAB_DIRNAME) if args.swanlab else None
+                str(args.output / SWANLAB_DIRNAME) if args.swanlab else None
             ),
-            "metrics_jsonl": str(args.output / WLX_METRICS_FILENAME),
+            "metrics_jsonl": str(args.output / METRICS_FILENAME),
         },
         "acceleration": {
             "dtype": dtype_name,
@@ -911,7 +913,7 @@ def main():
     print(f"{'='*60}\n")
 
     if trainer.is_world_process_zero():
-        summary_path = args.output / WLX_RUN_SUMMARY_FILENAME
+        summary_path = args.output / RUN_SUMMARY_FILENAME
         temporary_summary_path = summary_path.with_suffix(".json.tmp")
         temporary_summary_path.write_text(
             json.dumps(run_summary, ensure_ascii=False, indent=2, default=str),

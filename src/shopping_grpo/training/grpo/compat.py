@@ -2,7 +2,7 @@
 
 
 def install_torch_padding_fallback():
-    """Install the pinned veRL compatibility hooks used by WLX GRPO workers."""
+    """Install the pinned veRL compatibility hooks used by GRPO workers."""
     from verl.utils import attention_utils
     from verl.utils import npu_flash_attn_utils as fallback
 
@@ -16,9 +16,9 @@ def install_torch_padding_fallback():
     attention_utils._get_attention_functions = lambda: functions
 
     try:
-        from shopping_grpo.training.grpo.wlx_step_grpo import install_wlx_step_grpo
+        from shopping_grpo.training.grpo.step_grpo import install_step_grpo
     except ImportError:
         # Lightweight unit tests mock only veRL's padding module. The full
         # training preflight separately requires and verifies this hook.
         return
-    install_wlx_step_grpo()
+    install_step_grpo()
